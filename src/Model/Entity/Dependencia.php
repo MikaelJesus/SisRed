@@ -25,6 +25,6 @@ class Dependencia extends Entity
      */
     protected $_accessible = [
         'des_dependencia' => true,
-        'dependencia' => true
+        'dependencia_id' => true
     ];
 }

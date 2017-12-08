@@ -1,9 +1,11 @@
 <div class="users form">
 
-<div class="alert alert-dismissible alert-danger">
+<?= $this->Flash->render() ?>
+
+<!-- <div class="alert alert-dismissible alert-danger">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong><?= $this->Flash->render() ?></strong>
-</div>
+</div> -->
 
 
 <?= $this->Form->create() ?>

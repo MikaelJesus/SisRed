@@ -28,9 +28,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <!-- <?= $this->Html->css('base.css') ?> -->
     <!-- <?= $this->Html->css('cake.css') ?> -->
-    <?= $this->Html->css('bootstrap.css') ?>
     <?= $this->Html->css('simple-sidebar.css') ?>
-
+    <?= $this->Html->css('bootstrap.css') ?>
+    
     
     <?= $this->Html->script('jquery-3.2.1.js') ?>
     <?= $this->Html->script('bootstrap.js') ?>
@@ -42,7 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
 
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -65,8 +65,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </nav>
 
 
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    
+    <div class="main">
+        <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
     <footer>

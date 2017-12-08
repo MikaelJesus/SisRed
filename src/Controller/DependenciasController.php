@@ -63,7 +63,7 @@ class DependenciasController extends AppController
             }
             $this->Flash->error(__('The dependencia could not be saved. Please, try again.'));
         }
-        $dependencias = $this->Dependencias->Dependencias->find('list', ['limit' => 200]);
+        // $dependencias = $this->Dependencias->Dependencias->find('list', ['limit' => 200]);
         $this->set(compact('dependencia', 'dependencias'));
         $this->set('_serialize', ['dependencia']);
     }

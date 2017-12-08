@@ -54,6 +54,11 @@ class DependenciasTable extends Table
             ->scalar('des_dependencia')
             ->requirePresence('des_dependencia', 'create')
             ->notEmpty('des_dependencia');
+        $validator
+            ->scalar('dependencia_id')
+            ->requirePresence('dependencia_id', 'create')
+            ->notEmpty('dependencia_id')
+            ->add('dependencia_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -67,7 +72,7 @@ class DependenciasTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['dependencia_id'], 'Dependencias'));
+        $rules->add($rules->isUnique(['dependencia_id']));
 
         return $rules;
     }

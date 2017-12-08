@@ -58,6 +58,7 @@ class AppController extends Controller
                 'controller' => 'Main',
                 'action' => 'login'
             ],
+            'authError'=>'Sin derechos (igual se cambia)',
             'unauthorizedRedirect' => $this->referer() // If unauthorized, return them to page they were just on
         ]);
 
