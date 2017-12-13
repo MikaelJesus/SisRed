@@ -4,28 +4,51 @@
  * @var \App\Model\Entity\Area $area
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
+
+<div id="wrapper">
+        <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Form->postLink(
+                __('Eliminar Area'),
                 ['action' => 'delete', $area->area_id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $area->area_id)]
             )
-        ?></li>
-        <li><?= $this->Html->link(__('List Areas'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Area'), ['controller' => 'Areas', 'action' => 'add']) ?></li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="areas form large-10 medium-8 columns content">
-    <?= $this->Form->create($area) ?>
-    <fieldset>
-        <legend><?= __('Edit Area') ?></legend>
-        <?php
-            echo $this->Form->control('des_area');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+            ?></li>
+            <li><?= $this->Html->link(__('Nueva Area'), ['action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('Lista de Areas'), ['action' => 'index']) ?></li>
+        </ul>
+    </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+<?= $this->Form->create($area,['class'=>'form-horizontal']) ?>
+  <fieldset>
+    <legend><h1><?= __('Editar area') ?></h1></legend>
+    <div class="form-group">
+      <label for="area_id" class="col-lg-2 control-label">Clave</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" name="area_id" id="area_id" required="required" placeholder="Clave" value=<?php echo $area->area_id;?>>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="des_area" class="col-lg-2 control-label">Descripcion</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" name="des_area" id="des_area" required="required" placeholder="Descripcion" value=<?php echo $area->des_area;?>>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-default">Guardar</button>
+      </div>
+    </div>
+  </fieldset>
+<?= $this->Form->end() ?>
 </div>

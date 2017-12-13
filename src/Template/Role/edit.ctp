@@ -4,27 +4,44 @@
  * @var \App\Model\Entity\Role $role
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
+<div id="wrapper">
+        <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Form->postLink(
+                __('Eliminar Rol'),
                 ['action' => 'delete', $role->role_id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $role->role_id)]
             )
-        ?></li>
-        <li><?= $this->Html->link(__('List Role'), ['action' => 'index']) ?></li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="role form large-10 medium-8 columns content">
-    <?= $this->Form->create($role) ?>
-    <fieldset>
-        <legend><?= __('Edit Role') ?></legend>
-        <?php
-            echo $this->Form->control('des_role');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+            ?></li>
+            <li><?= $this->Html->link(__('Nuevo Rol'), ['action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('Lista de Roles'), ['action' => 'index']) ?></li>
+        </ul>
+    </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+<?= $this->Form->create($role,['class'=>'form-horizontal']) ?>
+  <fieldset>
+    <legend><h1><?= __('Editar Rol') ?></h1></legend>
+    <div class="form-group">
+      <label for="role_id" class="col-lg-2 control-label">Nombre de Rol</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" name="role_id" id="role_id" required="required" placeholder="Nombre de Rol" value=<?php echo $role->des_role;?>>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-default">Guardar</button>
+      </div>
+    </div>
+  </fieldset>
+<?= $this->Form->end() ?>
 </div>

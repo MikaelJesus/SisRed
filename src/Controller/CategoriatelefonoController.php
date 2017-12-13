@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Categoriatelefono Controller
@@ -77,12 +78,11 @@ class CategoriatelefonoController extends AppController
      */
     public function edit($id = null)
     {
-        $categoriatelefono = $this->Categoriatelefono->get($id, [
-            'contain' => []
-        ]);
+        $categoriatelefono_tabla= TableRegistry::get('Categoriatelefono');
+        $categoriatelefono = $categoriatelefono_tabla->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $categoriatelefono = $this->Categoriatelefono->patchEntity($categoriatelefono, $this->request->getData());
-            if ($this->Categoriatelefono->save($categoriatelefono)) {
+            $query=$categoriatelefono_tabla->query();
+            if ($query->update()->set(['categoriatelefono_id'=>$this->request->getData('categoriatelefono_id'),'des_categoriatelefono'=>$this->request->getData('des_categoriatelefono'),'des_nivelasignacion'=>$this->request->getData('des_nivelasignacion')])->where(['categoriatelefono_id'=>$id])->execute()) {
                 $this->Flash->success(__('The categoriatelefono has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

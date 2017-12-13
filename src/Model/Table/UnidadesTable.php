@@ -55,6 +55,12 @@ class UnidadesTable extends Table
             ->requirePresence('des_unidad', 'create')
             ->notEmpty('des_unidad');
 
+        $validator
+            ->scalar('unidad_id')
+            ->requirePresence('unidad_id', 'create')
+            ->notEmpty('unidad_id')
+            ->add('unidad_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
         return $validator;
     }
 
@@ -67,7 +73,7 @@ class UnidadesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['unidad_id'], 'Unidades'));
+        $rules->add($rules->isUnique(['unidad_id']));
 
         return $rules;
     }

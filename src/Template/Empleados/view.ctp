@@ -4,28 +4,48 @@
  * @var \App\Model\Entity\Empleado $empleado
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Empleado'), ['action' => 'edit', $empleado->empleado_id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Empleado'), ['action' => 'delete', $empleado->empleado_id], ['confirm' => __('Are you sure you want to delete # {0}?', $empleado->empleado_id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Empleados'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Empleado'), ['action' => 'add']) ?> </li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="empleados view large-10 medium-8 columns content">
-    <h3><?= h($empleado->nombre." ".$empleado->apellidop." ".$empleado->apellidom) ?></h3>
-    <table class="vertical-table">
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Html->link(__('Editar Empleado'), ['action' => 'edit',$empleado->empleado_id]) ?></li>
+            <li><?= $this->Form->postLink(
+                __('Eliminar Empleado'),
+                ['action' => 'delete', $empleado->empleado_id],
+                ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
+            )
+            ?></li>
+            <li><?= $this->Html->link(__('Nuevo Empleado'), ['action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('Lista de Empleados'), ['action' => 'index']) ?></li>
+        </ul>
+    </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <h1><?= __('Empleado') ?></h1>
+
+        
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h2><?= h($empleado->nombre." ".$empleado->apellidop." ".$empleado->apellidom) ?></h2>
+        </div>
+        <div class="panel-body">
+            <table class="vertical-table">
         <!-- <tr>
             <th scope="row"><?= __('Empleado') ?></th>
             <td><?= $empleado->has('empleado') ? $this->Html->link($empleado->empleado->empleado_id, ['controller' => 'Empleados', 'action' => 'view', $empleado->empleado->empleado_id]) : '' ?></td>
         </tr> -->
-        <tr>
-            <th scope="row"><?= __('') ?></th>
-            <!-- <td><?= h($empleado->foto) ?></td> -->
-            <td><?= $this->Html->image('../files/empleados/foto/' . $empleado->get('fotodir') . '/square_' . $empleado->get('foto')); ?></td>
-        </tr>
+        <div class="panel-body">
+            <?= $this->Html->image('../files/empleados/foto/' . $empleado->get('fotodir') . '/square_' . $empleado->get('foto')); ?>
+        </div>
+        
         <tr>
             <th scope="row"><?= __('Nue') ?></th>
             <td><?= h($empleado->nue) ?></td>
@@ -155,4 +175,6 @@
             <td><?= h($empleado->fecha_gafete) ?></td>
         </tr>
     </table>
+        </div>
+    </div>
 </div>

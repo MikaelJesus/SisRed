@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Categorias Controller
@@ -77,12 +78,11 @@ class CategoriasController extends AppController
      */
     public function edit($id = null)
     {
-        $categoria = $this->Categorias->get($id, [
-            'contain' => []
-        ]);
+        $categoria_tabla= TableRegistry::get('Categorias');
+        $categoria = $categoria_tabla->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
-            if ($this->Categorias->save($categoria)) {
+            $query=$categoria_tabla->query();
+            if ($query->update()->set(['categoria_id'=>$this->request->getData('categoria_id'),'des_categoria'=>$this->request->getData('des_categoria')])->where(['categoria_id'=>$id])->execute()) {
                 $this->Flash->success(__('The categoria has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

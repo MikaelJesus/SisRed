@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Dependencias Controller
@@ -77,12 +78,11 @@ class DependenciasController extends AppController
      */
     public function edit($id = null)
     {
-        $dependencia = $this->Dependencias->get($id, [
-            'contain' => []
-        ]);
+        $dependencia_tabla= TableRegistry::get('Dependencias');
+        $dependencia = $dependencia_tabla->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $dependencia = $this->Dependencias->patchEntity($dependencia, $this->request->getData());
-            if ($this->Dependencias->save($dependencia)) {
+            $query=$dependencia_tabla->query();
+            if ($query->update()->set(['dependencia_id'=>$this->request->getData('dependencia_id'),'des_dependencia'=>$this->request->getData('des_dependencia')])->where(['dependencia_id'=>$id])->execute()) {
                 $this->Flash->success(__('The dependencia has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

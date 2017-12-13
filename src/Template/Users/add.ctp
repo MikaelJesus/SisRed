@@ -4,24 +4,57 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="users form large-10 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
-        <?php
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
-            echo $this->Form->control('role_role_id', ['options' => $role]);
-            echo $this->Form->control('empleados_empleado_id', ['options' => $empleados]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div id="wrapper">
+        <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Html->link(__('Lista de Usuarios'), ['action' => 'index']) ?></li>
+            <li><?= $this->element('menu')?></li>
+        </ul>
+    </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+<?= $this->Form->create($user,['class'=>'form-horizontal']) ?>
+  <fieldset>
+    <legend><h1><?= __('Agregar Usuario') ?></h1></legend>
+    <div class="form-group">
+      <label for="username" class="col-lg-2 control-label">Nombre de Usuario</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" name="username" id="username" required="required" placeholder="Nombre de Usuario">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-lg-2 control-label">Contraseña</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" name="password" id="password" required="required" placeholder="Contraseña">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Privilegios</label>
+      <div class="col-lg-10">
+        <?php echo $this->Form->control('role_role_id', ['label'=>false,'options' => $role,'class'=>'form-control']);?>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Empleado</label>
+      <div class="col-lg-10">
+        <?php echo $this->Form->control('empleados_empleado_id', ['label'=>false,'options' => $empleados,'class'=>'form-control']);?>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-default">Guardar</button>
+      </div>
+    </div>
+  </fieldset>
+<?= $this->Form->end() ?>
 </div>

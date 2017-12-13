@@ -55,6 +55,12 @@ class DepartamentosTable extends Table
             ->requirePresence('des_departamento', 'create')
             ->notEmpty('des_departamento');
 
+        $validator
+            ->scalar('departamento_id')
+            ->requirePresence('departamento_id', 'create')
+            ->notEmpty('departamento_id')
+            ->add('departamento_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
         return $validator;
     }
 
@@ -67,7 +73,7 @@ class DepartamentosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['departamento_id'], 'Departamentos'));
+        $rules->add($rules->isUnique(['departamento_id']));
 
         return $rules;
     }

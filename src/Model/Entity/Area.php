@@ -25,6 +25,6 @@ class Area extends Entity
      */
     protected $_accessible = [
         'des_area' => true,
-        'area' => true
+        'area_id' => true
     ];
 }

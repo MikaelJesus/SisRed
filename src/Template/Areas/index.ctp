@@ -4,45 +4,65 @@
  * @var \App\Model\Entity\Area[]|\Cake\Collection\CollectionInterface $areas
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Area'), ['action' => 'add']) ?></li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="areas index large-10 medium-8 columns content">
-    <h3><?= __('Areas') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
+
+<div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">Menu</li>
+                <li><?= $this->Html->link(__('Nueva Area'), ['action' => 'add']) ?></li>
+                <li><?= $this->element('menu')?></li>
+            </ul>
+        </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+    <h1><?= __('Areas') ?></h1>
+    
+
+
+
+<table class="table table-striped table-hover ">
+          <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('area_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('des_area') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Area') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Descripcion') ?></th>
+                <th scope="col" class="actions"><?= __('Acciones') ?></th>
             </tr>
         </thead>
-        <tbody>
+  <tbody>
             <?php foreach ($areas as $area): ?>
             <tr>
-                <td><?= h($area->area_id)?></td>
+                <td><?= h($area->area_id) ?></td>
                 <td><?= h($area->des_area) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $area->area_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $area->area_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $area->area_id], ['confirm' => __('Are you sure you want to delete # {0}?', $area->area_id)]) ?>
+                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $area->area_id]) ?>
+                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $area->area_id]) ?>
+                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $area->area_id], ['confirm' => __('Are you sure you want to delete # {0}?', $area->area_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-    <div class="paginator">
+</table>
+
+
+
+    <div class="text-center">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Primero')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Siguiente') . ' >') ?>
+            <?= $this->Paginator->last(__('Ultimo') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, Mostrando {{current}} columna(s) de {{count}} en total')]) ?></p>
     </div>
+
 </div>

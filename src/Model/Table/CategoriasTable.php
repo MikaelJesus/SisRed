@@ -54,6 +54,11 @@ class CategoriasTable extends Table
             ->scalar('des_categoria')
             ->requirePresence('des_categoria', 'create')
             ->notEmpty('des_categoria');
+        $validator
+            ->scalar('categoria_id')
+            ->requirePresence('categoria_id', 'create')
+            ->notEmpty('categoria_id')
+            ->add('categoria_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -67,7 +72,7 @@ class CategoriasTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['categoria_id'], 'Categorias'));
+        $rules->add($rules->isUnique(['categoria_id']));
 
         return $rules;
     }

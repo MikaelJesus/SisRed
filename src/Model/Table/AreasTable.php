@@ -54,6 +54,12 @@ class AreasTable extends Table
             ->scalar('des_area')
             ->requirePresence('des_area', 'create')
             ->notEmpty('des_area');
+            
+        $validator
+            ->scalar('area_id')
+            ->requirePresence('area_id', 'create')
+            ->notEmpty('area_id')
+            ->add('area_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -67,7 +73,7 @@ class AreasTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['area_id'], 'Areas'));
+        $rules->add($rules->isUnique(['area_id']));
 
         return $rules;
     }

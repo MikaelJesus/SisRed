@@ -60,6 +60,12 @@ class CategoriatelefonoTable extends Table
             ->requirePresence('des_nivelasignacion', 'create')
             ->notEmpty('des_nivelasignacion');
 
+        $validator
+            ->scalar('categoriatelefono_id')
+            ->requirePresence('categoriatelefono_id', 'create')
+            ->notEmpty('categoriatelefono_id')
+            ->add('categoriatelefono_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
         return $validator;
     }
 
@@ -72,7 +78,7 @@ class CategoriatelefonoTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['categoriatelefono_id'], 'Categoriatelefono'));
+        $rules->add($rules->isUnique(['categoriatelefono_id']));
 
         return $rules;
     }

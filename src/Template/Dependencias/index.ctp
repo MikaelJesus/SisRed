@@ -5,17 +5,14 @@
  */
 ?>
 
-
-
-
 <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">Menu</li>
-                <li><?= $this->Html->link(__('Nueva Dependencia'), ['action' => 'add']) ?></li>
-                <li><?= $this->element('menu')?></li>
-            </ul>
-        </div>
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Html->link(__('Nueva Dependencia'), ['action' => 'add']) ?></li>
+            <li><?= $this->element('menu')?></li>
+        </ul>
+    </div>
         <!-- <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -28,33 +25,29 @@
         <h1><?= __('Dependencias') ?></h1>
 
 
-<table class="table table-striped table-hover ">
-     <thead>
+        <table class="table table-striped table-hover ">
+         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('dependencia_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('des_dependencia') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Clave') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Descripcion') ?></th>
+                <th scope="col" class="actions"><?= __('Acciones') ?></th>
             </tr>
         </thead>
-  <tbody>
-    <?php foreach ($dependencias as $dependencia): ?>
-    <tr>
-      <td><?= h($dependencia->dependencia_id)?></td>
-                <td><?= h($dependencia->des_dependencia) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $dependencia->dependencia_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $dependencia->dependencia_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $dependencia->dependencia_id], ['confirm' => __('Are you sure you want to delete # {0}?', $dependencia->dependencia_id)]) ?>
+        <tbody>
+            <?php foreach ($dependencias as $dependencia): ?>
+                <tr>
+                  <td><?= h($dependencia->dependencia_id)?></td>
+                  <td><?= h($dependencia->des_dependencia) ?></td>
+                  <td class="actions">
+                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $dependencia->dependencia_id]) ?>
+                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $dependencia->dependencia_id]) ?>
+                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $dependencia->dependencia_id], ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]) ?>
                 </td>
-    </tr>
-    <?php endforeach; ?>
-    <tr>
-  </tbody>
-</table> 
-
-
-    
-    
+            </tr>
+        <?php endforeach; ?>
+        <tr>
+        </tbody>
+    </table> 
     <div class="text-center">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('Primero')) ?>
@@ -65,7 +58,4 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, Mostrando {{current}} columna(s) de {{count}} en total')]) ?></p>
     </div>
-
-
-
 </div>
