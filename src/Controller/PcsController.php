@@ -66,7 +66,7 @@ class PcsController extends AppController
         $pcs = $this->Pcs->Pcs->find('list', ['limit' => 200]);
         $tiporesguardo = $this->Pcs->Tiporesguardo->find('list', ['keyField' => 'tiporesguardo_id','valueField' => 'des_resguardo']);
         $tipoconexion = $this->Pcs->Tipoconexion->find('list', ['keyField' => 'tipoconexion_id','valueField' => 'des_tipoconexion']);
-        $tipoequipo = $this->Pcs->Tipoequipo->find('list', ['keyField' => 'tipoequipo_id','valueField' => 'des_tipoequipo']);
+        $tipoequipo = $this->Pcs->Tipoequipo->find('list', ['keyField' => 'tipoequipo','valueField' => 'des_tipoequipo']);
         $empleados = $this->Pcs->Empleados->find('list', ['keyField' => 'empleado_id','valueField' => 'nue']);
         $this->set(compact('pc', 'pcs', 'tiporesguardo', 'tipoconexion', 'tipoequipo', 'empleados'));
         $this->set(compact('pc', 'pcs', 'tiporesguardo', 'tipoconexion', 'tipoequipo', 'empleados'));

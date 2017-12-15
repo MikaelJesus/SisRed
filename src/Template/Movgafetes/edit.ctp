@@ -4,65 +4,31 @@
  * @var \App\Model\Entity\Movgafete $movgafete
  */
 ?>
-
-<div id="wrapper">
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <li class="sidebar-brand">Menu</li>
-      <li><?= $this->Form->postLink(
-        __('Eliminar Movimiento de Gafete'),
-        ['action' => 'delete', $movgafete->movgafete_id],
-        ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
-      )
-      ?></li>
-      <li><?= $this->Html->link(__('Nuevo Movimiento de Gafete'), ['action' => 'add']) ?></li>
-      <li><?= $this->Html->link(__('Lista de Movimientos de Gafetes'), ['action' => 'index']) ?></li>
+<nav class="large-2 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $movgafete->movgafete_id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $movgafete->movgafete_id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Movgafetes'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Movgafete'), ['controller' => 'Movgafetes', 'action' => 'add']) ?></li>
+        <li><?= $this->element('menu')?></li>
     </ul>
-  </div>
-        <!-- <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
-                </div>
-            </div>
-          </div> -->
-
-<?= $this->Form->create($movgafete,['class'=>'form-horizontal']) ?>
-  <fieldset>
-    <legend><h1><?= __('Editar Movimiento de Gafete') ?></h1></legend>
-    <div class="form-group">
-      <label for="tipo_movimiento" class="col-lg-2 control-label">Tipo de Movimiento</label>
-      <div class="col-lg-10">
-        <?php echo $this->Form->control('tipo_movimiento',['label'=>false,'class'=>'form-control']);?>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="fecha_movimiento" class="col-lg-2 control-label">Fecha</label>
-      <div class="col-lg-10">
-        <?php echo $this->Form->control('fecha_movimiento',['label'=>false,'class'=>'form-control']);?>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="users_user_id" class="col-lg-2 control-label">Usuario</label>
-      <div class="col-lg-10">
-        <?php echo $this->Form->control('users_user_id', ['label'=>false,'options' => $users,'class'=>'form-control']);?>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="empleados_empleado_id" class="col-lg-2 control-label">Fecha</label>
-      <div class="col-lg-10">
-        <?php echo $this->Form->control('empleados_empleado_id', ['label'=>false,'options' => $empleados,'class'=>'form-control']);?>
-      </div>
-    </div>
-
-
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-default">Guardar</button>
-      </div>
-    </div>
-  </fieldset>
-<?= $this->Form->end() ?>
+</nav>
+<div class="movgafetes form large-10 medium-8 columns content">
+    <?= $this->Form->create($movgafete) ?>
+    <fieldset>
+        <legend><?= __('Edit Movgafete') ?></legend>
+        <?php
+            echo $this->Form->control('tipo_movimiento');
+            echo $this->Form->control('fecha_movimiento');
+            echo $this->Form->control('users_user_id', ['options' => $users]);
+            echo $this->Form->control('empleados_empleado_id', ['options' => $empleados]);
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
 </div>

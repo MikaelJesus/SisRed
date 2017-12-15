@@ -26,12 +26,12 @@ class CarrerasController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {   
+    {
         $this->paginate = [
             'contain' => ['Nivelcarrera']
         ];
         $carreras = $this->paginate($this->Carreras);
-        // $nivelcarrera = $this->Carreras->Nivelcarrera->find('list',['keyField' => 'nivelcarrera_id','valueField' => 'des_nivelcarrera']);
+
         $this->set(compact('carreras'));
         $this->set('_serialize', ['carreras']);
     }
@@ -137,18 +137,7 @@ class CarrerasController extends AppController
 
     public function pdf()
     {
-            $query = ['des_carrera LIKE '=> '%'.$this->request->getData('des_carrera').'%'];
-            $newdataquery =[];
-            foreach($query as $key => $data) {
-                if (strlen($data) > 0 ){
-                    $newdataquery[$key] = $data;
-                }
-            }
-            $carreras=$this->Carreras->find('all')->where($newdataquery);
-        // $query = ['Empleados.empleado_id LIKE '=> $code_transaction,'nombre LIKE '=>'%MIK%'];
-        // $carreras= $this->Carreras->find('all')->where(['Carreras.carrera_id LIKE' => ('%' . 1 . '%')],['Carreras.carrera_id' => 'string']);
-        // $carreras=$this->Dependencias->find('all')->where(($newdataquery),['Dependencias.dependencia_id'=>'string']);
-        // echo var_dump($carreras);
+        $carreras = $this->Carreras->find('all');
         $this->viewBuilder()->options([
             'pdfConfig'=>[
                 'orientation'=>'landscape',

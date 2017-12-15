@@ -110,7 +110,7 @@ class EmpleadosController extends AppController
         $statusprofecional = $this->Empleados->Statusprofecional->find('list',['keyField' => 'statusprofecional_id','valueField' => 'des_statusprofecional']);
         $contrataciones = $this->Empleados->Contrataciones->find('list',['keyField' => 'contratacion_id','valueField' => 'des_contratacion']);
         $status = $this->Empleados->Status->find('list',['keyField' => 'status_id','valueField' => 'des_status']);
-        $privilegiosinternet = $this->Empleados->Privilegiosinternet->find('list',['keyField' => 'privilegiosinternet_id','valueField' => 'nivel']);
+        $privilegiosinternet = $this->Empleados->Privilegiosinternet->find('list');
         $categoriatelefono = $this->Empleados->Categoriatelefono->find('list',['keyField' => 'categoriatelefono_id','valueField' => 'des_categoriatelefono']);
         $this->set(compact('empleado', 'empleados', 'categorias', 'dependencias', 'areas', 'departamentos', 'unidades', 'carreras', 'statusprofecional', 'contrataciones', 'status', 'privilegiosinternet', 'categoriatelefono'));
         $this->set('_serialize', ['empleado']);
