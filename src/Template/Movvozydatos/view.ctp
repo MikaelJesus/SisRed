@@ -4,38 +4,49 @@
  * @var \App\Model\Entity\Movvozydato $movvozydato
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Movvozydato'), ['action' => 'edit', $movvozydato->movvozydatos_id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Movvozydato'), ['action' => 'delete', $movvozydato->movvozydatos_id], ['confirm' => __('Are you sure you want to delete # {0}?', $movvozydato->movvozydatos_id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Movvozydatos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Movvozydato'), ['action' => 'add']) ?> </li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="movvozydatos view large-10 medium-8 columns content">
-    <h3><?= h($movvozydato->movvozydatos_id) ?></h3>
-    <table class="vertical-table">
-        <!-- <tr>
-            <th scope="row"><?= __('Movvozydato') ?></th>
-            <td><?= $movvozydato->has('movvozydato') ? $this->Html->link($movvozydato->movvozydato->movvozydatos_id, ['controller' => 'Movvozydatos', 'action' => 'view', $movvozydato->movvozydato->movvozydatos_id]) : '' ?></td>
-        </tr> -->
-        <tr>
-            <th scope="row"><?= __('Tipo Movimiento') ?></th>
-            <td><?= h($movvozydato->tipo_movimiento) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $movvozydato->has('user') ? $this->Html->link($movvozydato->user->user_id, ['controller' => 'Users', 'action' => 'view', $movvozydato->user->user_id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Empleado') ?></th>
-            <td><?= $movvozydato->has('empleado') ? $this->Html->link($movvozydato->empleado->empleado_id, ['controller' => 'Empleados', 'action' => 'view', $movvozydato->empleado->empleado_id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fecha Movimiento') ?></th>
-            <td><?= h($movvozydato->fecha_movimiento) ?></td>
-        </tr>
-    </table>
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Html->link(__('Editar movvozydato'), ['action' => 'edit',$movvozydato->movvozydatos_id]) ?></li>
+            <li><?= $this->Form->postLink(
+                __('Eliminar movvozydato'),
+                ['action' => 'delete', $movvozydato->movvozydatos_id],
+                ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
+            )
+            ?></li>
+            <li><?= $this->Html->link(__('Nueva movvozydato'), ['action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('Lista de movvozydatos'), ['action' => 'index']) ?></li>
+        </ul>
+    </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <h1><?= __('movvozydato') ?></h1>
+
+
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h2><?= h($movvozydato->movvozydatos_id) ?></h2>
+        </div>
+        <div class="panel-body">
+            <?= h($movvozydato->tipo_movimiento) ?>
+        </div>
+        <div class="panel-body">
+            <?= h($movvozydato->fecha_movimiento) ?>
+        </div>
+        <div class="panel-body">
+            <?= $movvozydato->has('user') ? $this->Html->link($movvozydato->user->user_id, ['controller' => 'Users', 'action' => 'view', $movvozydato->user->user_id]) : '' ?>
+        </div>
+        <div class="panel-body">
+            <?= $movvozydato->has('empleado') ? $this->Html->link($movvozydato->empleado->empleado_id, ['controller' => 'Empleados', 'action' => 'view', $movvozydato->empleado->empleado_id]) : '' ?>
+        </div>
+    </div>
 </div>
