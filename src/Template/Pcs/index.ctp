@@ -4,16 +4,28 @@
  * @var \App\Model\Entity\Pc[]|\Cake\Collection\CollectionInterface $pcs
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Pc'), ['action' => 'add']) ?></li>
-        <li><?= $this->element('menu')?></li>
-    </ul>
-</nav>
-<div class="pcs index large-10 medium-8 columns content">
-    <h3><?= __('Pcs') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Menu</li>
+            <li><?= $this->Html->link(__('Nueva Pc'), ['action' => 'add']) ?></li>
+            <li><?= $this->element('menu')?></li>
+        </ul>
+    </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <h1><?= __('Lista de Pcs') ?></h1>
+
+
+        <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <!-- <th scope="col"><?= $this->Paginator->sort('pc_id') ?></th> -->
@@ -66,23 +78,24 @@
                 <td><?= $pc->has('tipoconexion') ? $this->Html->link($pc->tipoconexion->tipoconexion_id, ['controller' => 'Tipoconexion', 'action' => 'view', $pc->tipoconexion->tipoconexion_id]) : '' ?></td>
                 <td><?= $pc->has('tipoequipo') ? $this->Html->link($pc->tipoequipo->tipoequipo_id, ['controller' => 'Tipoequipo', 'action' => 'view', $pc->tipoequipo->tipoequipo_id]) : '' ?></td>
                 <td><?= $pc->has('empleado') ? $this->Html->link($pc->empleado->empleado_id, ['controller' => 'Empleados', 'action' => 'view', $pc->empleado->empleado_id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $pc->pc_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pc->pc_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pc->pc_id], ['confirm' => __('Are you sure you want to delete # {0}?', $pc->pc_id)]) ?>
+                  <td class="actions">
+                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $pc->pc_id]) ?>
+                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $pc->pc_id]) ?>
+                    <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $pc->pc_id], ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]) ?>
                 </td>
             </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
+        <tr>
         </tbody>
-    </table>
-    <div class="paginator">
+    </table> 
+    <div class="text-center">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Primero')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Siguiente') . ' >') ?>
+            <?= $this->Paginator->last(__('Ultimo') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, Mostrando {{current}} columna(s) de {{count}} en total')]) ?></p>
     </div>
 </div>

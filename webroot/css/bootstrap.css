@@ -16,6 +16,7 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  background: #eee;
 }
 body {
   margin: 0;
@@ -2638,7 +2639,7 @@ input[type="search"] {
 }
 .form-group {
   margin-bottom: 15px;
-  width:860px;
+  /*width:860px;*/
 }
 .radio,
 .checkbox {
@@ -2986,6 +2987,7 @@ select[multiple].input-lg {
 .form-horizontal .form-group {
   margin-left: -15px;
   margin-right: -15px;
+  width: 860px;
 }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
