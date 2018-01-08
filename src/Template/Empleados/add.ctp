@@ -153,13 +153,6 @@
             </div>
 
             <div class="form-group">
-              <label for="status_status_id" class="col-lg-2 control-label">Status(hidden/default: "Activo")</label>
-              <div class="col-lg-10">
-                <?php echo $this->Form->control('status_status_id', ['label'=>false,'options' => $status,'class'=>'form-control']);?>
-              </div>
-            </div>
-
-            <div class="form-group">
               <label for="domicilio" class="col-lg-2 control-label">Domicilio</label>
               <div class="col-lg-10">
                 <input type="text" class="form-control" name="domicilio" id="domicilio" required="required" placeholder="Domicilio">

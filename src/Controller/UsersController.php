@@ -117,6 +117,36 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    public function pdf()
+    {
+            $query = ['Users.user_id LIKE '=> '%'.$this->request->getData('user_id').'%',
+            'username LIKE '=> '%'.$this->request->getData('username').'%',
+            'Users.role_role_id LIKE '=> '%'.$this->request->getData('role_role_id').'%',
+            'Users.empleados_empleado_id LIKE '=> '%'.$this->request->getData('empleados_empleado_id').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $users=$this->Users->find('all')->where(($newdataquery),['Users.user_id' => 'string','Users.empleados_empleado_id' => 'string','Users.role_role_id' => 'string']);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Users.pdf'
+            ]
+        ]);
+        $this->set(compact('users'));
+        $this->set('_serialize', ['users']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

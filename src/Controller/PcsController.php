@@ -122,6 +122,60 @@ class PcsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+
+    public function pdf()
+    {
+            $query = ['Pcs.pc_id LIKE '=> '%'.$this->request->getData('pc_id').'%',
+            'direccion_mac LIKE '=> '%'.$this->request->getData('direccion_mac').'%',
+            'marca LIKE '=> '%'.$this->request->getData('marca').'%',
+            'modelo_pc LIKE '=> '%'.$this->request->getData('modelo_pc').'%',
+            'sistema_operativo LIKE '=> '%'.$this->request->getData('sistema_operativo').'%',
+            'nombre_red LIKE '=> '%'.$this->request->getData('nombre_red').'%',
+            'grupo_trabajo LIKE '=> '%'.$this->request->getData('grupo_trabajo').'%',
+            'ip LIKE '=> '%'.$this->request->getData('ip').'%',
+            'antivirus LIKE '=> '%'.$this->request->getData('antivirus').'%',
+            'nodo LIKE '=> '%'.$this->request->getData('nodo').'%',
+            'edificio LIKE '=> '%'.$this->request->getData('edificio').'%',
+            'piso LIKE '=> '%'.$this->request->getData('piso').'%',
+            'fecha_alta LIKE '=> '%'.$this->request->getData('fecha_alta').'%',
+            'marca_procesador LIKE '=> '%'.$this->request->getData('marca_procesador').'%',
+            'modelo_procesador LIKE '=> '%'.$this->request->getData('modelo_procesador').'%',
+            'velocidad_procesador LIKE '=> '%'.$this->request->getData('velocidad_procesador').'%',
+            'capacidad_disco LIKE '=> '%'.$this->request->getData('capacidad_disco').'%',
+            'capacidad_ram LIKE '=> '%'.$this->request->getData('capacidad_ram').'%',
+            'Pcs.tiporesguardo_tiporesguardo_id LIKE '=> '%'.$this->request->getData('tiporesguardo_tiporesguardo_id').'%',
+            'Pcs.tipoconexion_tipoconexion_id LIKE '=> '%'.$this->request->getData('tipoconexion_tipoconexion_id').'%',
+            'Pcs.tipoequipo_tipoequipo_id LIKE '=> '%'.$this->request->getData('tipoequipo_tipoequipo_id').'%',
+            'Pcs.empleados_empleado_id LIKE '=> '%'.$this->request->getData('empleados_empleado_id').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $pcs=$this->Pcs->find('all')->where(($newdataquery),[
+                'Pcs.pc_id' => 'string','Pcs.tiporesguardo_tiporesguardo_id' => 'string',
+                'Pcs.pc_id' => 'string','Pcs.tipoconexion_tipoconexion_id' => 'string',
+                'Pcs.pc_id' => 'string','Pcs.tipoequipo_tipoequipo_id' => 'string',
+                'Pcs.empleados_empleado_id' => 'string'
+            ]);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Pcs.pdf'
+            ]
+        ]);
+        $this->set(compact('pcs'));
+        $this->set('_serialize', ['pcs']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

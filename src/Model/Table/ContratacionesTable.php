@@ -54,6 +54,11 @@ class ContratacionesTable extends Table
             ->scalar('des_contratacion')
             ->requirePresence('des_contratacion', 'create')
             ->notEmpty('des_contratacion');
+        $validator
+            ->scalar('contratacion_id')
+            ->requirePresence('contratacion_id', 'create')
+            ->notEmpty('contratacion_id')
+            ->add('contratacion_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -67,8 +72,11 @@ class ContratacionesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['contratacion_id'], 'Contrataciones'));
+        $rules->add($rules->isUnique(['contratacion_id']));
 
         return $rules;
     }
 }
+
+
+

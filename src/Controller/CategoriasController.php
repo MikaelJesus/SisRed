@@ -113,6 +113,38 @@ class CategoriasController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    public function pdf()
+    {
+            $query = ['des_categoria LIKE '=> '%'.$this->request->getData('des_categoria').'%','Categorias.categoria_id LIKE '=> '%'.$this->request->getData('categoria_id').'%'];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $categorias=$this->Categorias->find('all')->where(($newdataquery),['Categorias.categoria_id' => 'string']);
+        // $query = ['Empleados.empleado_id LIKE '=> $code_transaction,'nombre LIKE '=>'%MIK%'];
+        // $categorias= $this->categorias->find('all')->where(['categorias.categoria_id LIKE' => ('%' . 1 . '%')],['categorias.categoria_id' => 'string']);
+        // $categorias=$this->Dependencias->find('all')->where(($newdataquery),['Dependencias.dependencia_id'=>'string']);
+        // echo var_dump($categorias);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'categorias.pdf'
+            ]
+        ]);
+        $this->set(compact('categorias'));
+        $this->set('_serialize', ['categorias']);
+    }
+
+    public function vistapdf()
+    {
+        
+    }
+
+
     public function isAuthorized($user)
     {
         // All registered users can add articles

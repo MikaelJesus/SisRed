@@ -113,6 +113,36 @@ class CategoriatelefonoController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    public function pdf()
+    {
+            $query = ['des_nivelasignacion LIKE '=> '%'.$this->request->getData('des_nivelasignacion').'%','Categoriatelefono.categoriatelefono_id LIKE '=> '%'.$this->request->getData('categoriatelefono_id').'%','des_categoriatelefono LIKE '=> '%'.$this->request->getData('des_categoriatelefono').'%'];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $categoriatelefono=$this->Categoriatelefono->find('all')->where(($newdataquery),['Categoriatelefono.categoriatelefono_id' => 'string']);
+        // $query = ['Empleados.empleado_id LIKE '=> $code_transaction,'nombre LIKE '=>'%MIK%'];
+        // $categoriatelefono= $this->categoriatelefono->find('all')->where(['categoriatelefono.categoriatelefono_id LIKE' => ('%' . 1 . '%')],['categoriatelefono.categoriatelefono_id' => 'string']);
+        // $categoriatelefono=$this->Dependencias->find('all')->where(($newdataquery),['Dependencias.dependencia_id'=>'string']);
+        // echo var_dump($categoriatelefono);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Categoriatelefono.pdf'
+            ]
+        ]);
+        $this->set(compact('categoriatelefono'));
+        $this->set('_serialize', ['categoriatelefono']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

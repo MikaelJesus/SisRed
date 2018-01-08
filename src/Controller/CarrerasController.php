@@ -137,14 +137,14 @@ class CarrerasController extends AppController
 
     public function pdf()
     {
-            $query = ['des_carrera LIKE '=> '%'.$this->request->getData('des_carrera').'%'];
+            $query = ['des_carrera LIKE '=> '%'.$this->request->getData('des_carrera').'%','Carreras.carrera_id LIKE '=> '%'.$this->request->getData('carrera_id').'%','Carreras.nivelcarrera_nivelcarrera_id LIKE '=> '%'.$this->request->getData('nivelcarrera_nivelcarrera_id').'%'];
             $newdataquery =[];
             foreach($query as $key => $data) {
                 if (strlen($data) > 0 ){
                     $newdataquery[$key] = $data;
                 }
             }
-            $carreras=$this->Carreras->find('all')->where($newdataquery);
+            $carreras=$this->Carreras->find('all')->where(($newdataquery),['Carreras.carrera_id' => 'string','Carreras.nivelcarrera_nivelcarrera_id' => 'string']);
         // $query = ['Empleados.empleado_id LIKE '=> $code_transaction,'nombre LIKE '=>'%MIK%'];
         // $carreras= $this->Carreras->find('all')->where(['Carreras.carrera_id LIKE' => ('%' . 1 . '%')],['Carreras.carrera_id' => 'string']);
         // $carreras=$this->Dependencias->find('all')->where(($newdataquery),['Dependencias.dependencia_id'=>'string']);
@@ -157,6 +157,10 @@ class CarrerasController extends AppController
         ]);
         $this->set(compact('carreras'));
         $this->set('_serialize', ['carreras']);
+    }
+    public function vistapdf()
+    {
+        
     }
 
 

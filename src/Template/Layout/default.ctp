@@ -42,7 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
 
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -62,7 +62,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
 
 
     
@@ -77,6 +77,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+
+    $(document).ready(function(){
+        setTimeout(function() {
+          $('.mensaje').fadeOut('fast');
+        }, 5000); // <-- time in milliseconds
     });
     </script>
 </body>

@@ -113,4 +113,41 @@ class PrivilegiosinternetController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    public function pdf()
+    {
+            $query = ['Privilegiosinternet.privilegio_id LIKE '=> '%'.$this->request->getData('privilegio_id').'%',
+            'nivel LIKE '=> '%'.$this->request->getData('nivel').'%',
+            'des_privilegio LIKE '=> '%'.$this->request->getData('des_privilegio').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $privilegiosinternet=$this->Privilegiosinternet->find('all')->where(($newdataquery),['Privilegiosinternet.privilegio_id' => 'string']);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Privilegiosinternet.pdf'
+            ]
+        ]);
+        $this->set(compact('privilegiosinternet'));
+        $this->set('_serialize', ['privilegiosinternet']);
+    }
+    public function vistapdf()
+    {
+        
+    }
+
+    public function isAuthorized($user)
+    {
+        // All registered users can add articles
+        if (in_array($this->request->action, ['add', 'delete','edit','index','view']) && ($user['role_role_id'] != 1)) {
+            return true;
+        }
+        return parent::isAuthorized($user);
+    }
 }

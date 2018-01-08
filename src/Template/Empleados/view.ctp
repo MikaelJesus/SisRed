@@ -111,10 +111,6 @@
             <td><?= $empleado->has('contratacione') ? $this->Html->link($empleado->contratacione->des_contratacion, ['controller' => 'Contrataciones', 'action' => 'view', $empleado->contratacione->contratacion_id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Status') ?></th>
-            <td><?= $empleado->has('status') ? $this->Html->link($empleado->status->des_status, ['controller' => 'Status', 'action' => 'view', $empleado->status->status_id]) : '' ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Domicilio') ?></th>
             <td><?= h($empleado->domicilio) ?></td>
         </tr>

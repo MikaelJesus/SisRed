@@ -135,6 +135,64 @@ class EmpleadosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    public function pdf()
+    {
+            $query = ['Empleados.empleado_id LIKE '=> '%'.$this->request->getData('empleado_id').'%',
+            'nue LIKE '=> '%'.$this->request->getData('nue').'%',
+            'nup LIKE '=> '%'.$this->request->getData('nup').'%',
+            'nombre LIKE '=> '%'.$this->request->getData('nombre').'%',
+            'apellidop LIKE '=> '%'.$this->request->getData('apellidop').'%',
+            'apellidom LIKE '=> '%'.$this->request->getData('apellidom').'%',
+            'curp LIKE '=> '%'.$this->request->getData('curp').'%',
+            'rfc LIKE '=> '%'.$this->request->getData('rfc').'%',
+            'empleados.categorias_categoria_id LIKE '=> '%'.$this->request->getData('categorias_categoria_id').'%',
+            'empleados.dependencias_dependencia_id LIKE '=> '%'.$this->request->getData('dependencias_dependencia_id').'%',
+            'empleados.areas_area_id LIKE '=> '%'.$this->request->getData('areas_area_id').'%',
+            'empleados.unidades_unidad_id LIKE '=> '%'.$this->request->getData('unidades_unidad_id').'%',
+            'empleados.departamentos_departamento_id LIKE '=> '%'.$this->request->getData('departamentos_departamento_id').'%',
+            'fecha_gafete LIKE '=> '%'.$this->request->getData('fecha_gafete').'%',
+            'sexo LIKE '=> '%'.$this->request->getData('sexo').'%',
+            'empleados.carreras_carrera_id LIKE '=> '%'.$this->request->getData('carreras_carrera_id').'%',
+            'empleados.statusprofecional_statusprofecional_id LIKE '=> '%'.$this->request->getData('statusprofecional_statusprofecional_id').'%',
+            'empleados.contrataciones_contratacion_id LIKE '=> '%'.$this->request->getData('contrataciones_contratacion_id').'%',
+            'domicilio LIKE '=> '%'.$this->request->getData('domicilio').'%',
+            'telefono_local LIKE '=> '%'.$this->request->getData('telefono_local').'%',
+            'telefono_celular LIKE '=> '%'.$this->request->getData('telefono_celular').'%',
+            'email LIKE '=> '%'.$this->request->getData('email').'%',
+            // 'empleados.privilegiosinternet_privilegio_id LIKE '=> '%'.$this->request->getData('privilegiosinternet_privilegio_id').'%',
+            // 'empleados.categoriatelefono_categoriatelefono_id LIKE '=> '%'.$this->request->getData('categoriatelefono_categoriatelefono_id').'%',
+            'observaciones LIKE '=> '%'.$this->request->getData('observaciones').'%',
+            'clave_imss LIKE '=> '%'.$this->request->getData('clave_imss').'%',
+            'nombre_emergencia LIKE '=> '%'.$this->request->getData('nombre_emergencia').'%',
+            'apellidop_emergencia LIKE '=> '%'.$this->request->getData('apellidop_emergencia').'%',
+            'apellidom_emergencia LIKE '=> '%'.$this->request->getData('apellidom_emergencia').'%',
+            'tel_emergencia LIKE '=> '%'.$this->request->getData('tel_emergencia').'%',
+            'tipo_sangre LIKE '=> '%'.$this->request->getData('tipo_sangre').'%',
+            'alergias LIKE '=> '%'.$this->request->getData('alergias').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $empleados=$this->Empleados->find('all')->where(($newdataquery),['Empleados.empleado_id' => 'string']);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Empleados.pdf'
+            ]
+        ]);
+        $this->set(compact('empleados'));
+        $this->set('_serialize', ['empleados']);
+    }
+    public function vistapdf()
+    {
+
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

@@ -113,6 +113,34 @@ class DependenciasController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    public function pdf()
+    {
+            $query = ['Dependencias.dependencia_id LIKE '=> '%'.$this->request->getData('dependencia_id').'%',
+            'des_dependencia LIKE '=> '%'.$this->request->getData('des_dependencia').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $dependencias=$this->Dependencias->find('all')->where(($newdataquery),['Dependencias.dependencia_id' => 'string']);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Dependencias.pdf'
+            ]
+        ]);
+        $this->set(compact('dependencias'));
+        $this->set('_serialize', ['dependencias']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

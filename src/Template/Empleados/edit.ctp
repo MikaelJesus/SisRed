@@ -158,13 +158,6 @@
             </div>
 
             <div class="form-group">
-              <label for="status_status_id" class="col-lg-2 control-label">Status(hidden/default: "Activo")</label>
-              <div class="col-lg-10">
-                <?php echo $this->Form->control('statusprofecional_statusprofecional_id', ['label'=>false,'options' => $status,'class'=>'form-control']);?>
-              </div>
-            </div>
-
-            <div class="form-group">
               <label for="domicilio" class="col-lg-2 control-label">Domicilio</label>
               <div class="col-lg-10">
                 <?php echo $this->Form->control('domicilio',['label'=>false,'class'=>'form-control']);?>

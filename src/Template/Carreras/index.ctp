@@ -26,24 +26,6 @@
         </div> -->
         <h1><?= __('Carreras') ?></h1>
 
-        <form method="post" accept-charset="utf-8" class="form-horizontal" action="/SisRed/carreras/pdf.pdf">
-    <legend><h1><?= __('Agregar Carrera') ?></h1></legend>
-    <div class="form-group">
-      <label for="des_carrera" class="col-lg-2 control-label">Descripcion</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="des_carrera" id="des_carrera" placeholder="Descripcion">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-default">PDF</button>
-      </div>
-    </div>
-  </fieldset>
-<?= $this->Form->end() ?>
-</div>
-
-
         <table class="table table-striped table-hover ">
          <thead>
             <tr>
@@ -78,4 +60,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, Mostrando {{current}} columna(s) de {{count}} en total')]) ?></p>
     </div>
+</div>
 </div>

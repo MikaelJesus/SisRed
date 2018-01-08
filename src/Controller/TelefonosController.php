@@ -115,6 +115,40 @@ class TelefonosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    public function pdf()
+    {
+            $query = ['Telefonos.telefono_id LIKE '=> '%'.$this->request->getData('telefono_id').'%',
+            'mac_telefono LIKE '=> '%'.$this->request->getData('mac_telefono').'%',
+            'extencion_telefono LIKE '=> '%'.$this->request->getData('extencion_telefono').'%',
+            'modelo_telefono LIKE '=> '%'.$this->request->getData('modelo_telefono').'%',
+            'numero_serie LIKE '=> '%'.$this->request->getData('numero_serie').'%',
+            'numero_inventario LIKE '=> '%'.$this->request->getData('numero_inventario').'%',
+            'fecha_alta LIKE '=> '%'.$this->request->getData('fecha_alta').'%',
+            'Telefonos.empleados_empleado_id LIKE '=> '%'.$this->request->getData('empleados_empleado_id').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $telefonos=$this->Telefonos->find('all')->where(($newdataquery),['Telefonos.telefono_id' => 'string','Telefonos.empleados_empleado_id' => 'string']);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Telefonos.pdf'
+            ]
+        ]);
+        $this->set(compact('telefonos'));
+        $this->set('_serialize', ['telefonos']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

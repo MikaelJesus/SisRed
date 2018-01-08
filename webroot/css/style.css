@@ -3,9 +3,10 @@ h1, h2, h3, h4 {
     margin-bottom:0.5em;
 }
 h3 {
-    background: #fff;
-    color: #15848F;
-    font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+    /*background: #fff;*/
+    /*color: #15848F;*/
+    /*font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;*/
+    text-align: center;
     font-size: 190%;
 }
 
@@ -15,12 +16,12 @@ tr {
     line-height: 2em;
     margin: 0em 0em;
     width: 100%;
-    background: #f4f4f4;
+    /*background: #f4f4f4;*/
     page-break-inside: avoid;
 }
 
 tbody {
-	color: #15848F;
+	/*color: #15848F;*/
     font-weight: bold;
     padding-left: 4px;
     vertical-align: top;
@@ -33,5 +34,18 @@ tbody {
     padding: 10px 60px 40px 60px;
 }
 
-thead { display: table-header-group }
+thead { 
+    display: table-header-group;
+    background: #DAF7A6;
+}
 tfoot { display: table-row-group }
+
+
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}

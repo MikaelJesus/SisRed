@@ -4,28 +4,51 @@
  * @var \App\Model\Entity\Contratacione $contratacione
  */
 ?>
-<nav class="large-2 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $contratacione->contratacion_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $contratacione->contratacion_id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Contrataciones'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contrataciones'), ['action' => 'add']) ?></li>
-        <li><?= $this->element('menu')?></li>
+
+<div id="wrapper">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">Menu</li>
+      <li><?= $this->Form->postLink(
+        __('Eliminar Contratacion'),
+        ['action' => 'delete', $contratacione->contratacion_id],
+        ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
+      )
+      ?></li>
+      <li><?= $this->Html->link(__('Nueva contratacion'), ['action' => 'add']) ?></li>
+      <li><?= $this->Html->link(__('Lista de contratacions'), ['action' => 'index']) ?></li>
     </ul>
-</nav>
-<div class="contrataciones form large-10 medium-8 columns content">
-    <?= $this->Form->create($contratacione) ?>
-    <fieldset>
-        <legend><?= __('Edit Contratacione') ?></legend>
-        <?php
-            echo $this->Form->control('des_contratacion');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+  </div>
+        <!-- <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+          </div> -->
+
+          <?= $this->Form->create($contratacione,['class'=>'form-horizontal']) ?>
+          <fieldset>
+            <legend><h1><?= __('Editar Contratacion') ?></h1></legend>
+            <div class="form-group">
+              <label for="contratacion_id" class="col-lg-2 control-label">Clave</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="contratacion_id" id="contratacion_id" required="required" placeholder="Clave" value=<?php echo $contratacione->contratacion_id;?>>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="des_contratacion" class="col-lg-2 control-label">Descripcion</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="des_contratacion" id="des_contratacion" required="required" placeholder="Descripcion" value=<?php echo $contratacione->des_contratacion;?>>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-default">Guardar</button>
+              </div>
+            </div>
+          </fieldset>
+          <?= $this->Form->end() ?>
+        </div>

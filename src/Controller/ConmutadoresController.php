@@ -118,6 +118,41 @@ class ConmutadoresController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    public function pdf()
+    {
+            $query = ['Conmutadores.switch_id LIKE '=> '%'.$this->request->getData('switch_id').'%',
+            'numero_serie LIKE '=> '%'.$this->request->getData('numero_serie').'%',
+            'marca LIKE '=> '%'.$this->request->getData('marca').'%',
+            'numero_puertos LIKE '=> '%'.$this->request->getData('numero_puertos').'%',
+            'numero_inventario LIKE '=> '%'.$this->request->getData('numero_inventario').'%',
+            'numero_equipos LIKE '=> '%'.$this->request->getData('numero_equipos').'%',
+            'fecha_alta LIKE '=> '%'.$this->request->getData('fecha_alta').'%',
+            'modelo LIKE '=> '%'.$this->request->getData('modelo').'%',
+            'Conmutadores.tiporesguardo_tiporesguardo_id LIKE '=> '%'.$this->request->getData('tiporesguardo_tiporesguardo_id').'%',
+            'Conmutadores.empleados_empleado_id LIKE '=> '%'.$this->request->getData('empleados_empleado_id').'%'
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $conmutadores=$this->Conmutadores->find('all')->where(($newdataquery),['Conmutadores.switch_id' => 'string','Conmutadores.tiporesguardo_tiporesguardo_id' => 'string','Conmutadores.empleados_empleado_id' => 'string']);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Conmutadores.pdf'
+            ]
+        ]);
+        $this->set(compact('conmutadores'));
+        $this->set('_serialize', ['conmutadores']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

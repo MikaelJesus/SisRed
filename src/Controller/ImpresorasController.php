@@ -123,6 +123,56 @@ class ImpresorasController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+    public function pdf()
+    {
+            $query = [
+            'Impresoras.impresora_id LIKE '=> '%'.$this->request->getData('impresora_id').'%',
+            'numero_serie LIKE '=> '%'.$this->request->getData('numero_serie').'%',
+            'marca LIKE '=> '%'.$this->request->getData('marca').'%',
+            'modelo LIKE '=> '%'.$this->request->getData('modelo').'%',
+            'mac_impresora LIKE '=> '%'.$this->request->getData('mac_impresora').'%',
+            'ip_impresora LIKE '=> '%'.$this->request->getData('ip_impresora').'%',
+            'numero_inventario LIKE '=> '%'.$this->request->getData('numero_inventario').'%',
+            'fecha_alta LIKE '=> '%'.$this->request->getData('fecha_alta').'%',
+            'velocidad_imprecion LIKE '=> '%'.$this->request->getData('velocidad_imprecion').'%',
+            'nodo LIKE '=> '%'.$this->request->getData('nodo').'%',
+            'Impresoras.empleados_empleado_id LIKE '=> '%'.$this->request->getData('empleados_empleado_id').'%',
+            'Impresoras.tipocolor_tipocolor_id LIKE '=> '%'.$this->request->getData('tipocolor_tipocolor_id').'%',
+            'Impresoras.tipoimpresora_tipoimpresora_id LIKE '=> '%'.$this->request->getData('tipoimpresora_tipoimpresora_id').'%',
+            'Impresoras.tiporesguardo_tiporesguardo_id LIKE '=> '%'.$this->request->getData('tiporesguardo_tiporesguardo_id').'%',
+            'Impresoras.tipoconexion_tipoconexion_id LIKE '=> '%'.$this->request->getData('tipoconexion_tipoconexion_id').'%'
+            
+            ];
+            $newdataquery =[];
+            foreach($query as $key => $data) {
+                if (strlen($data) > 0 ){
+                    $newdataquery[$key] = $data;
+                }
+            }
+            $impresoras=$this->Impresoras->find('all')->where(($newdataquery),[
+                'Impresoras.impresora_id' => 'string',
+                'Impresoras.empleados_empleado_id' => 'string',
+                'Impresoras.tipocolor_tipocolor_id' => 'string',
+                'Impresoras.tipoimpresora_tipoimpresora_id' => 'string',
+                'Impresoras.tiporesguardo_tiporesguardo_id' => 'string',
+                'Impresoras.tipoconexion_tipoconexion_id' => 'string'
+            ]);
+        $this->viewBuilder()->options([
+            'pdfConfig'=>[
+                'orientation'=>'landscape',
+                'filename'=>'Impresoras.pdf'
+            ]
+        ]);
+        $this->set(compact('impresoras'));
+        $this->set('_serialize', ['impresoras']);
+    }
+    public function vistapdf()
+    {
+        
+    }
     public function isAuthorized($user)
     {
         // All registered users can add articles

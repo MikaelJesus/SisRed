@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f300da805c16a68797bb36dd35cde4f5",
+    "content-hash": "a70775ad362ce92052975ec1a9b48418",
     "packages": [
         {
             "name": "aura/intl",
@@ -290,16 +290,16 @@
         },
         {
             "name": "davidyell/proffer",
-            "version": "dev-master",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidyell/CakePHP3-Proffer.git",
-                "reference": "e7894b0569e92782dd47f53b21e41d952bba588e"
+                "reference": "d27a80c7bbf05b5c1603670676dfa1b08305d203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidyell/CakePHP3-Proffer/zipball/e7894b0569e92782dd47f53b21e41d952bba588e",
-                "reference": "e7894b0569e92782dd47f53b21e41d952bba588e",
+                "url": "https://api.github.com/repos/davidyell/CakePHP3-Proffer/zipball/d27a80c7bbf05b5c1603670676dfa1b08305d203",
+                "reference": "d27a80c7bbf05b5c1603670676dfa1b08305d203",
                 "shasum": ""
             },
             "require": {
@@ -338,7 +338,7 @@
                 "orm",
                 "upload"
             ],
-            "time": "2017-10-30T16:26:10+00:00"
+            "time": "2017-01-09T09:15:34+00:00"
         },
         {
             "name": "friendsofcake/cakepdf",
@@ -2588,7 +2588,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "davidyell/proffer": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,
