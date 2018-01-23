@@ -25,6 +25,6 @@ class Programa extends Entity
      */
     protected $_accessible = [
         'des_unidad' => true,
-        'unidad' => true
+        'unidad_id' => true
     ];
 }

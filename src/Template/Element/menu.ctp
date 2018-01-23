@@ -5,9 +5,9 @@
                 <li class="menu-admin"><?= $this->Html->link(__('Usuarios'), ['controller'=>'Users','action' => 'index']) ?></li>
                 <li class="menu-admin"><?= $this->Html->link(__('Roles'), ['controller' => 'Role', 'action' => 'index']) ?></li>
                 <li class="menu-admin"><?= $this->Html->link(__('Dependencias'), ['controller' => 'Dependencias', 'action' => 'index']) ?></li>
-                <li class="menu-admin"><?= $this->Html->link(__('Areas'), ['controller' => 'Areas', 'action' => 'index']) ?></li>
-                <li class="menu-admin"><?= $this->Html->link(__('Unidades'), ['controller' => 'Unidades', 'action' => 'index']) ?></li>
-                <li class="menu-admin"><?= $this->Html->link(__('Departamento'), ['controller' => 'Departamentos', 'action' => 'index']) ?></li>
+                <li class="menu-admin"><?= $this->Html->link(__('Unidad Ejecutora'), ['controller' => 'Unidadejecutora', 'action' => 'index']) ?></li>
+                <li class="menu-admin"><?= $this->Html->link(__('Programa'), ['controller' => 'Programa', 'action' => 'index']) ?></li>
+                <li class="menu-admin"><?= $this->Html->link(__('Centro de Trabajo'), ['controller' => 'Centrodetrabajo', 'action' => 'index']) ?></li>
                 <li class="menu-admin"><?= $this->Html->link(__('Categorias'), ['controller' => 'Categorias', 'action' => 'index']) ?></li>
                 <li class="menu-admin"><?= $this->Html->link(__('Categoria Telefono'), ['controller' => 'Categoriatelefono', 'action' => 'index']) ?></li>
                 <li class="menu-admin"><?= $this->Html->link(__('Contrataciones'), ['controller' => 'Contrataciones', 'action' => 'index']) ?></li>

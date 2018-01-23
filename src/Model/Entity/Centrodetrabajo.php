@@ -25,6 +25,6 @@ class Centrodetrabajo extends Entity
      */
     protected $_accessible = [
         'des_departamento' => true,
-        'departamento' => true
+        'departamento_id' => true
     ];
 }

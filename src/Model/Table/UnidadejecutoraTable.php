@@ -36,7 +36,7 @@ class UnidadejecutoraTable extends Table
         $this->setDisplayField('area_id');
         $this->setPrimaryKey('area_id');
 
-        $this->belongsTo('Areas', [
+        $this->belongsTo('Unidadejecutora', [
             'foreignKey' => 'area_id',
             'joinType' => 'INNER'
         ]);
@@ -55,6 +55,12 @@ class UnidadejecutoraTable extends Table
             ->requirePresence('des_area', 'create')
             ->notEmpty('des_area');
 
+            $validator
+            ->scalar('area_id')
+            ->requirePresence('area_id', 'create')
+            ->notEmpty('area_id')
+            ->add('area_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
         return $validator;
     }
 
@@ -67,7 +73,7 @@ class UnidadejecutoraTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['area_id'], 'Areas'));
+        $rules->add($rules->isUnique(['area_id']));
 
         return $rules;
     }

@@ -36,7 +36,7 @@ class CentrodetrabajoTable extends Table
         $this->setDisplayField('departamento_id');
         $this->setPrimaryKey('departamento_id');
 
-        $this->belongsTo('Departamentos', [
+        $this->belongsTo('Centrodetrabajo', [
             'foreignKey' => 'departamento_id',
             'joinType' => 'INNER'
         ]);
@@ -54,6 +54,11 @@ class CentrodetrabajoTable extends Table
             ->scalar('des_departamento')
             ->requirePresence('des_departamento', 'create')
             ->notEmpty('des_departamento');
+            $validator
+            ->scalar('departamento_id')
+            ->requirePresence('departamento_id', 'create')
+            ->notEmpty('departamento_id')
+            ->add('departamento_id', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -67,7 +72,7 @@ class CentrodetrabajoTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['departamento_id'], 'Departamentos'));
+        $rules->add($rules->isUnique(['departamento_id']));
 
         return $rules;
     }
