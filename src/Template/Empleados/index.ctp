@@ -9,8 +9,11 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">Menu</li>
-            <li><?= $this->Html->link(__('Nuevo Empleado'), ['action' => 'add']) ?></li>
-            <li><?= $this->element('menu')?></li>
+            <li><?= $this->Html->link(__('Alta de Empleado'), ['action' => 'add']) ?></li>
+            <li onclick="buscador()"><a href="#">Buscar Empleado</a></li>
+            <li><?= $this->Html->link(__('Reportes'), ['action' => 'vistapdf']) ?></li>
+            <!-- <li><?= $this->element('menu')?></li> -->
+
         </ul>
     </div>
         <!-- <div id="page-content-wrapper">
@@ -24,6 +27,20 @@
         </div> -->
         <h1><?= __('Empleados') ?></h1>
 
+
+<div id="buscar" style="display: none;">
+    <h1><?= __('Buscador') ?></h1>
+<?php
+   echo $this->Form->create(null, ['valueSources' => 'query']);
+    // You'll need to populate $authors in the template from your controller
+    echo $this->Form->input('nombre');
+    // Match the search param in your table configuration
+    echo $this->Form->input('nue');
+    echo $this->Form->button('Buscar', ['type' => 'submit']);
+    echo $this->Html->link('Reiniciar', ['action' => 'index']);
+    echo $this->Form->end();
+?>
+</div>
 
         <table class="table table-striped table-hover ">
          <thead>
@@ -123,3 +140,16 @@
         <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, Mostrando {{current}} columna(s) de {{count}} en total')]) ?></p>
     </div>
 </div>
+
+
+
+<script>
+function buscador() {
+    var x = document.getElementById("buscar");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>

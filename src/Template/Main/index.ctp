@@ -1,13 +1,18 @@
-<div id="wrapper">
-        <div id="sidebar-wrapper">
+<!-- <div id="wrapper"> -->
+       <!--  <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">Menu</li>
                 <?php if ($Auth->user('role_role_id')==3): ?>
                 <li><?= $this->Html->link(__('Nuevo Requerimiento'), ['controller'=>'movrequerimientos','action' => 'add']) ?></li>
                 <?php endif ?>
                 <li><?= $this->element('menu')?></li>
+                <li><a href="/SisRed/main/logout">Salir</a></li>
             </ul>
         </div>
+ -->
+
+
+
         <!-- <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -39,7 +44,7 @@
 
                     <div class="panel-body">
 
-                        <p class="text-center">
+                        <!-- <p class="text-center">
                             <a href="/SisRed/Carreras/vistapdf"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Carreras</button></a>
                         </p>
 
@@ -69,7 +74,27 @@
 
                         <p class="text-center">
                             <a href="/SisRed/PrivilegiosInternet/vistapdf"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Privilegios de Internet</button></a>
+                        </p> -->
+
+                        <p class="text-center">
+                            <a href="/SisRed/Empleados"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Control e Impresion de Gafetes</button></a>
                         </p>
+                        <p class="text-center">
+                            <a href="/SisRed/Movvozydatos"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Servicios de Voz y Datos</button></a>
+                        </p>
+                        <p class="text-center">
+                            <a href="/SisRed/Movrequerimientos"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Requerimiento y/o Apoyo Tecnico</button></a>
+                        </p>
+                        <p class="text-center">
+                            <a href="#"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Boton ese de tablas de la DB</button></a>
+                        </p>
+                        <p class="text-center">
+                            <a href="#"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Cambiar Contraseña</button></a>
+                        </p>
+
+
+
+
 
                 </div>
             </div>
@@ -81,4 +106,4 @@
 
 
 
-    </div>
+    <!-- </div> -->

@@ -10,14 +10,16 @@
         <ul class="sidebar-nav">
             <li class="sidebar-brand">Menu</li>
             <li><?= $this->Html->link(__('Editar Empleado'), ['action' => 'edit',$empleado->empleado_id]) ?></li>
+            <li><?= $this->Html->link(__('Alta de Empleado'), ['action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('Lista de Empleados'), ['action' => 'index']) ?></li>
             <li><?= $this->Form->postLink(
                 __('Eliminar Empleado'),
                 ['action' => 'delete', $empleado->empleado_id],
                 ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
             )
             ?></li>
-            <li><?= $this->Html->link(__('Nuevo Empleado'), ['action' => 'add']) ?></li>
-            <li><?= $this->Html->link(__('Lista de Empleados'), ['action' => 'index']) ?></li>
+            
+            
         </ul>
     </div>
         <!-- <div id="page-content-wrapper">
@@ -76,23 +78,23 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Categoria') ?></th>
-            <td><?= $empleado->has('categoria') ? $this->Html->link($empleado->categoria->des_categoria, ['controller' => 'Categorias', 'action' => 'view', $empleado->categoria->categoria_id]) : '' ?></td>
+            <td><?= h($empleado->categoria->des_categoria) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Dependencia') ?></th>
-            <td><?= $empleado->has('dependencia') ? $this->Html->link($empleado->dependencia->des_dependencia, ['controller' => 'Dependencias', 'action' => 'view', $empleado->dependencia->dependencia_id]) : '' ?></td>
+            <td><?= h($empleado->dependencia->des_dependencia) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Area') ?></th>
-            <td><?= $empleado->has('area') ? $this->Html->link($empleado->area->des_area, ['controller' => 'Areas', 'action' => 'view', $empleado->area->area_id]) : '' ?></td>
+            <th scope="row"><?= __('Unidad Ejecutora') ?></th>
+            <td><?= h($empleado->unidadejecutora->des_area) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Unidade') ?></th>
-            <td><?= $empleado->has('unidade') ? $this->Html->link($empleado->unidade->des_unidad, ['controller' => 'Unidades', 'action' => 'view', $empleado->unidade->unidad_id]) : '' ?></td>
+            <th scope="row"><?= __('Programa') ?></th>
+            <td><?= h($empleado->programa->des_unidad) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Departamento') ?></th>
-            <td><?= $empleado->has('departamento') ? $this->Html->link($empleado->departamento->des_departamento, ['controller' => 'Departamentos', 'action' => 'view', $empleado->departamento->departamento_id]) : '' ?></td>
+            <th scope="row"><?= __('Centro de Trabajo') ?></th>
+            <td><?= h($empleado->centrodetrabajo->des_departamento) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Sexo') ?></th>
@@ -100,15 +102,15 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Carrera') ?></th>
-            <td><?= $empleado->has('carrera') ? $this->Html->link($empleado->carrera->des_carrera, ['controller' => 'Carreras', 'action' => 'view', $empleado->carrera->carrera_id]) : '' ?></td>
+            <td><?= h($empleado->carrera->des_carrera) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Statusprofecional') ?></th>
-            <td><?= $empleado->has('statusprofecional') ? $this->Html->link($empleado->statusprofecional->des_statusprofecional, ['controller' => 'Statusprofecional', 'action' => 'view', $empleado->statusprofecional->statusprofecional_id]) : '' ?></td>
+            <td><?= h($empleado->statusprofecional->des_statusprofecional) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Contratacione') ?></th>
-            <td><?= $empleado->has('contratacione') ? $this->Html->link($empleado->contratacione->des_contratacion, ['controller' => 'Contrataciones', 'action' => 'view', $empleado->contratacione->contratacion_id]) : '' ?></td>
+            <td><?= h($empleado->contratacione->des_contratacion) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Domicilio') ?></th>
@@ -128,11 +130,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Privilegiosinternet') ?></th>
-            <td><?= $empleado->has('privilegiosinternet') ? $this->Html->link($empleado->privilegiosinternet->privilegio_id, ['controller' => 'Privilegiosinternet', 'action' => 'view', $empleado->privilegiosinternet->privilegio_id]) : '' ?></td>
+            <td><?= $empleado->has('privilegiosinternet') ? h($empleado->privilegiosinternet->des_privilegio) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Categoriatelefono') ?></th>
-            <td><?= $empleado->has('categoriatelefono') ? $this->Html->link($empleado->categoriatelefono->des_categoriatelefono, ['controller' => 'Categoriatelefono', 'action' => 'view', $empleado->categoriatelefono->categoriatelefono_id]) : '' ?></td>
+            <td><?= $empleado->has('categoriatelefono') ? h($empleado->categoriatelefono->des_categoriatelefono) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Observaciones') ?></th>

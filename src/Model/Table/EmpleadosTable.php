@@ -59,15 +59,15 @@ class EmpleadosTable extends Table
             'foreignKey' => 'dependencias_dependencia_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Areas', [
+        $this->belongsTo('Unidadejecutora', [
             'foreignKey' => 'areas_area_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Departamentos', [
+        $this->belongsTo('Centrodetrabajo', [
             'foreignKey' => 'departamentos_departamento_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Unidades', [
+        $this->belongsTo('Programa', [
             'foreignKey' => 'unidades_unidad_id',
             'joinType' => 'INNER'
         ]);
@@ -81,10 +81,6 @@ class EmpleadosTable extends Table
         ]);
         $this->belongsTo('Contrataciones', [
             'foreignKey' => 'contrataciones_contratacion_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Status', [
-            'foreignKey' => 'status_status_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Privilegiosinternet', [
@@ -114,6 +110,30 @@ class EmpleadosTable extends Table
         'thumbnailMethod' => 'gd'   // Options are Imagick or Gd
     ]
 ]);
+
+        // Add the behaviour to your table
+        $this->addBehavior('Search.Search');
+
+        // Setup search filter using search manager
+        $this->searchManager()
+            ->value('empleado_id')
+            // Here we will alias the 'q' query param to search the `Articles.title`
+            // field and the `Articles.content` field, using a LIKE match, with `%`
+            // both before and after.
+            ->add('nue', 'Search.Like', [
+                'before' => true,
+                'after' => true,
+                'fieldMode' => 'OR',
+                'comparison' => 'LIKE',
+                'wildcardAny' => '*',
+                'wildcardOne' => '?',
+                'field' => ['nombre', 'nue']
+            ])
+            ->add('foo', 'Search.Callback', [
+                'callback' => function ($query, $args, $filter) {
+                    // Modify $query as required
+                }
+            ]);
     }
 
     
@@ -253,13 +273,12 @@ class EmpleadosTable extends Table
         $rules->add($rules->existsIn(['empleado_id'], 'Empleados'));
         $rules->add($rules->existsIn(['categorias_categoria_id'], 'Categorias'));
         $rules->add($rules->existsIn(['dependencias_dependencia_id'], 'Dependencias'));
-        $rules->add($rules->existsIn(['areas_area_id'], 'Areas'));
-        $rules->add($rules->existsIn(['departamentos_departamento_id'], 'Departamentos'));
-        $rules->add($rules->existsIn(['unidades_unidad_id'], 'Unidades'));
+        $rules->add($rules->existsIn(['areas_area_id'], 'Unidadejecutora'));
+        $rules->add($rules->existsIn(['departamentos_departamento_id'], 'Centrodetrabajo'));
+        $rules->add($rules->existsIn(['unidades_unidad_id'], 'Programa'));
         $rules->add($rules->existsIn(['carreras_carrera_id'], 'Carreras'));
         $rules->add($rules->existsIn(['statusprofecional_statusprofecional_id'], 'Statusprofecional'));
         $rules->add($rules->existsIn(['contrataciones_contratacion_id'], 'Contrataciones'));
-        $rules->add($rules->existsIn(['status_status_id'], 'Status'));
         $rules->add($rules->existsIn(['privilegiosinternet_privilegio_id'], 'Privilegiosinternet'));
         $rules->add($rules->existsIn(['categoriatelefono_categoriatelefono_id'], 'Categoriatelefono'));
 

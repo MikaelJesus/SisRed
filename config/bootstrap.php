@@ -232,3 +232,5 @@ Configure::write('CakePdf', [
     ],
     'download' => false
 ]);
+
+Plugin::load('Search');

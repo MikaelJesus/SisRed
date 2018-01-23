@@ -20,13 +20,20 @@ class EmpleadosController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Categorias', 'Dependencias', 'Areas', 'Departamentos', 'Unidades', 'Carreras', 'Statusprofecional', 'Contrataciones', 'Status', 'Privilegiosinternet', 'Categoriatelefono']
-        ];
-        $empleados = $this->paginate($this->Empleados);
+        // $this->paginate = [
+        //     'contain' => ['Categorias', 'Dependencias', 'Unidadejecutora', 'Centrodetrabajo', 'Programa', 'Carreras', 'Statusprofecional', 'Contrataciones', 'Privilegiosinternet', 'Categoriatelefono']
+        // ];
+        // $empleados = $this->paginate($this->Empleados);
+        // $this->set(compact('empleados'));
+        // $this->set('_serialize', ['empleados']);
 
-        $this->set(compact('empleados'));
-        $this->set('_serialize', ['empleados']);
+
+        $query = $this->Empleados
+        // Use the plugins 'search' custom finder and pass in the
+        // processed query params
+        ->find('search', ['search' => $this->request->query]);
+
+    $this->set('empleados', $this->paginate($query));
     }
 
     /**
@@ -39,7 +46,7 @@ class EmpleadosController extends AppController
     public function view($id = null)
     {
         $empleado = $this->Empleados->get($id, [
-            'contain' => ['Categorias', 'Dependencias', 'Areas', 'Departamentos', 'Unidades', 'Carreras', 'Statusprofecional', 'Contrataciones', 'Status', 'Privilegiosinternet', 'Categoriatelefono']
+            'contain' => ['Categorias', 'Dependencias', 'Unidadejecutora', 'Centrodetrabajo', 'Programa', 'Carreras', 'Statusprofecional', 'Contrataciones', 'Privilegiosinternet', 'Categoriatelefono']
         ]);
 
         $this->set('empleado', $empleado);
@@ -66,13 +73,12 @@ class EmpleadosController extends AppController
         $empleados = $this->Empleados->Empleados->find('list', ['limit' => 200]);
         $categorias = $this->Empleados->Categorias->find('list',['keyField' => 'categoria_id','valueField' => 'des_categoria']);
         $dependencias = $this->Empleados->Dependencias->find('list',['keyField' => 'dependencia_id','valueField' => 'des_dependencia']);
-        $areas = $this->Empleados->Areas->find('list',['keyField' => 'area_id','valueField' => 'des_area']);
-        $departamentos = $this->Empleados->Departamentos->find('list',['keyField' => 'departamento_id','valueField' => 'des_departamento']);
-        $unidades = $this->Empleados->Unidades->find('list',['keyField' => 'unidad_id','valueField' => 'des_unidad']);
+        $areas = $this->Empleados->Unidadejecutora->find('list',['keyField' => 'area_id','valueField' => 'des_area']);
+        $departamentos = $this->Empleados->Centrodetrabajo->find('list',['keyField' => 'departamento_id','valueField' => 'des_departamento']);
+        $unidades = $this->Empleados->Programa->find('list',['keyField' => 'unidad_id','valueField' => 'des_unidad']);
         $carreras = $this->Empleados->Carreras->find('list',['keyField' => 'carrera_id','valueField' => 'des_carrera']);
         $statusprofecional = $this->Empleados->Statusprofecional->find('list',['keyField' => 'statusprofecional_id','valueField' => 'des_statusprofecional']);
         $contrataciones = $this->Empleados->Contrataciones->find('list',['keyField' => 'contratacion_id','valueField' => 'des_contratacion']);
-        $status = $this->Empleados->Status->find('list',['keyField' => 'status_id','valueField' => 'des_status']);
         $privilegiosinternet = $this->Empleados->Privilegiosinternet->find('list');
         $categoriatelefono = $this->Empleados->Categoriatelefono->find('list',['keyField' => 'categoriatelefono_id','valueField' => 'des_categoriatelefono']);
         $this->set(compact('empleado', 'empleados', 'categorias', 'dependencias', 'areas', 'departamentos', 'unidades', 'carreras', 'statusprofecional', 'contrataciones', 'status', 'privilegiosinternet', 'categoriatelefono'));
@@ -103,13 +109,12 @@ class EmpleadosController extends AppController
         $empleados = $this->Empleados->Empleados->find('list', ['limit' => 200]);
         $categorias = $this->Empleados->Categorias->find('list',['keyField' => 'categoria_id','valueField' => 'des_categoria']);
         $dependencias = $this->Empleados->Dependencias->find('list',['keyField' => 'dependencia_id','valueField' => 'des_dependencia']);
-        $areas = $this->Empleados->Areas->find('list',['keyField' => 'area_id','valueField' => 'des_area']);
-        $departamentos = $this->Empleados->Departamentos->find('list',['keyField' => 'departamento_id','valueField' => 'des_departamento']);
-        $unidades = $this->Empleados->Unidades->find('list',['keyField' => 'unidad_id','valueField' => 'des_unidad']);
+        $areas = $this->Empleados->Unidadejecutora->find('list',['keyField' => 'area_id','valueField' => 'des_area']);
+        $departamentos = $this->Empleados->Centrodetrabajo->find('list',['keyField' => 'departamento_id','valueField' => 'des_departamento']);
+        $unidades = $this->Empleados->Programa->find('list',['keyField' => 'unidad_id','valueField' => 'des_unidad']);
         $carreras = $this->Empleados->Carreras->find('list',['keyField' => 'carrera_id','valueField' => 'des_carrera']);
         $statusprofecional = $this->Empleados->Statusprofecional->find('list',['keyField' => 'statusprofecional_id','valueField' => 'des_statusprofecional']);
         $contrataciones = $this->Empleados->Contrataciones->find('list',['keyField' => 'contratacion_id','valueField' => 'des_contratacion']);
-        $status = $this->Empleados->Status->find('list',['keyField' => 'status_id','valueField' => 'des_status']);
         $privilegiosinternet = $this->Empleados->Privilegiosinternet->find('list',['keyField' => 'privilegiosinternet_id','valueField' => 'nivel']);
         $categoriatelefono = $this->Empleados->Categoriatelefono->find('list',['keyField' => 'categoriatelefono_id','valueField' => 'des_categoriatelefono']);
         $this->set(compact('empleado', 'empleados', 'categorias', 'dependencias', 'areas', 'departamentos', 'unidades', 'carreras', 'statusprofecional', 'contrataciones', 'status', 'privilegiosinternet', 'categoriatelefono'));

@@ -9,10 +9,9 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">Menu</li>
-            <li><?= $this->Html->link(__('Nueva Carrera'), ['action' => 'add']) ?></li>
-            <li><?= $this->Html->link(__('Exportar a Excel'), ['action' => 'export']) ?></li>
             <li><?= $this->Html->link(__('Exportar a PDF'), ['action' => 'pdf','_ext' => 'pdf']); ?></li>
-            <li><?= $this->element('menu')?></li>
+            <li><?= $this->Html->link(__('Exportar a Excel'), ['action' => 'export']) ?></li>
+            <!-- <li><?= $this->element('menu')?></li> -->
         </ul>
     </div>
 

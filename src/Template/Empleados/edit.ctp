@@ -9,13 +9,13 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">Menu</li>
+      <li><?= $this->Html->link(__('Alta de Empleado'), ['action' => 'add']) ?></li>
       <li><?= $this->Form->postLink(
         __('Eliminar Empleado'),
         ['action' => 'delete', $empleado->empleado_id],
         ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
       )
       ?></li>
-      <li><?= $this->Html->link(__('Nuevo Empleado'), ['action' => 'add']) ?></li>
       <li><?= $this->Html->link(__('Lista de Empleados'), ['action' => 'index']) ?></li>
     </ul>
   </div>
@@ -266,7 +266,7 @@
 
             <div class="form-group">
               <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-default">Guardar</button>
+                <button type="submit" class="btn btn-default">Actualizar</button>
               </div>
             </div>
           </fieldset>
