@@ -10,7 +10,8 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">Menu</li>
                 <li><?= $this->Html->link(__('Lista de Movimientos de Voz y Datos'), ['action' => 'index']) ?></li>
-                <li><?= $this->element('menu')?></li>
+                <li><a href="/SisRed/main/logout">Salir</a></li>
+                <!-- <li><?= $this->element('menu')?></li> -->
             </ul>
         </div>
         <!-- <div id="page-content-wrapper">

@@ -92,6 +92,10 @@
                             <a href="#"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Cambiar Contraseña</button></a>
                         </p>
 
+                        <p class="text-center">
+                            <a href="/SisRed/main/logout"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Salir</button></a>
+                        </p>
+
 
 
 

@@ -12,6 +12,7 @@
             <li><?= $this->Html->link(__('Alta de Empleado'), ['action' => 'add']) ?></li>
             <li onclick="buscador()"><a href="#">Buscar Empleado</a></li>
             <li><?= $this->Html->link(__('Reportes'), ['action' => 'vistapdf']) ?></li>
+            <li><a href="/SisRed/main/logout">Salir</a></li>
             <!-- <li><?= $this->element('menu')?></li> -->
 
         </ul>

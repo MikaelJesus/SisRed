@@ -11,6 +11,7 @@
             <li class="sidebar-brand">Menu</li>
             <li><?= $this->Html->link(__('Exportar a PDF'), ['action' => 'pdf','_ext' => 'pdf']); ?></li>
             <li><?= $this->Html->link(__('Exportar a Excel'), ['action' => 'export']) ?></li>
+            <li><a href="/SisRed/main/logout">Salir</a></li>
             <!-- <li><?= $this->element('menu')?></li> -->
         </ul>
     </div>

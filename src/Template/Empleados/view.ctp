@@ -18,7 +18,7 @@
                 ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
             )
             ?></li>
-            
+            <li><a href="/SisRed/main/logout">Salir</a></li>
             
         </ul>
     </div>

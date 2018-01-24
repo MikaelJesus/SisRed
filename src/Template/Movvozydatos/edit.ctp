@@ -17,6 +17,7 @@
       ?></li>
       <li><?= $this->Html->link(__('Nuevo Movmiento de Voz y Datos'), ['action' => 'add']) ?></li>
       <li><?= $this->Html->link(__('Lista de Movimientos de Voz y Datos'), ['action' => 'index']) ?></li>
+      <li><a href="/SisRed/main/logout">Salir</a></li>
     </ul>
   </div>
         <!-- <div id="page-content-wrapper">

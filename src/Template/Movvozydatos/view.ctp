@@ -18,6 +18,7 @@
             ?></li>
             <li><?= $this->Html->link(__('Nueva movvozydato'), ['action' => 'add']) ?></li>
             <li><?= $this->Html->link(__('Lista de movvozydatos'), ['action' => 'index']) ?></li>
+            <li><a href="/SisRed/main/logout">Salir</a></li>
         </ul>
     </div>
         <!-- <div id="page-content-wrapper">

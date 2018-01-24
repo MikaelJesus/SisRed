@@ -11,6 +11,7 @@
             <li class="sidebar-brand">Menu</li>
             <li><?= $this->Html->link(__('Nuevo Movimiento de Voz y Datos'), ['action' => 'add']) ?></li>
             <li><?= $this->element('menu')?></li>
+            <li><a href="/SisRed/main/logout">Salir</a></li>
         </ul>
     </div>
         <!-- <div id="page-content-wrapper">
