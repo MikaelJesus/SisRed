@@ -9,9 +9,9 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">Menu</li>
-            <li><?= $this->Html->link(__('Alta de Empleado'), ['action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('Alta de Empleado'), ['action' => 'addempleados']) ?></li>
             <li onclick="buscador()"><a href="#">Buscar Empleado</a></li>
-            <li><?= $this->Html->link(__('Reportes'), ['action' => 'vistapdf']) ?></li>
+            <li><?= $this->Html->link(__('Reportes'), ['controller'=>'Empleados','action' => 'vistapdf']) ?></li>
             <li><a href="/SisRed/main/logout">Salir</a></li>
             <!-- <li><?= $this->element('menu')?></li> -->
 
@@ -120,8 +120,8 @@
                 <td><?= h($empleado->tipo_sangre) ?></td>
                 <td><?= h($empleado->alergias) ?></td> -->
                   <td class="actions">
-                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $empleado->empleado_id]) ?>
-                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $empleado->empleado_id]) ?>
+                    <?= $this->Html->link(__('Ver'), ['controller'=>'Empleados','action' => 'view', $empleado->empleado_id]) ?>
+                    <?= $this->Html->link(__('Editar'), ['controller'=>'Empleados','action' => 'edit', $empleado->empleado_id]) ?>
                     <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $empleado->empleado_id], ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]) ?>
                 </td>
             </tr>

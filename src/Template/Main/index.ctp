@@ -77,7 +77,7 @@
                         </p> -->
 
                         <p class="text-center">
-                            <a href="/SisRed/Empleados"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Control e Impresion de Gafetes</button></a>
+                            <a href="/SisRed/Movgafetes/indexempleados"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Control e Impresion de Gafetes</button></a>
                         </p>
                         <p class="text-center">
                             <a href="/SisRed/Movvozydatos"><button class="btn btn-default"><i class="fa fa-sign-in"></i>Servicios de Voz y Datos</button></a>

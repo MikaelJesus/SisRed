@@ -29,6 +29,17 @@ class MovgafetesController extends AppController
         $this->set('_serialize', ['movgafetes']);
     }
 
+    public function indexempleados()
+    {
+        $this->loadModel('Empleados');
+        $query = $this->Empleados
+        // Use the plugins 'search' custom finder and pass in the
+        // processed query params
+        ->find('search', ['search' => $this->request->query]);
+
+    $this->set('empleados', $this->paginate($query));
+    }
+
     /**
      * View method
      *
@@ -67,6 +78,45 @@ class MovgafetesController extends AppController
         $users = $this->Movgafetes->Users->find('list', ['limit' => 200]);
         $empleados = $this->Movgafetes->Empleados->find('list', ['keyField' => 'empleado_id','valueField' => 'nue']);
         $this->set(compact('movgafete', 'movgafetes', 'users', 'empleados'));
+        $this->set('_serialize', ['movgafete']);
+    }
+
+    public function addempleados()
+    {
+        $this->loadModel('Empleados');
+        $movgafete = $this->Movgafetes->newEntity();
+        $empleado = $this->Empleados->newEntity();
+
+
+
+        if ($this->request->is('post')) {
+
+            $empleado = $this->Empleados->patchEntity($empleado, $this->request->getData());
+            $movgafete = $this->Movgafetes->patchEntity($movgafete, $this->request->getData());
+            if (($this->Empleados->save($empleado))&&($this->Movgafetes->save($movgafete))) {
+                $this->Flash->success(__('The empleado has been saved.'));
+
+                return $this->redirect(['action' => 'indexempleados']);
+            }
+            $this->Flash->error(__('The movgafete could not be saved. Please, try again.'));
+        }
+        // $empleados = $this->Empleados->Empleados->find('list', ['limit' => 200]);
+        $categorias = $this->Empleados->Categorias->find('list',['keyField' => 'categoria_id','valueField' => 'des_categoria']);
+        $dependencias = $this->Empleados->Dependencias->find('list',['keyField' => 'dependencia_id','valueField' => 'des_dependencia']);
+        $areas = $this->Empleados->Unidadejecutora->find('list',['keyField' => 'area_id','valueField' => 'des_area']);
+        $departamentos = $this->Empleados->Centrodetrabajo->find('list',['keyField' => 'departamento_id','valueField' => 'des_departamento']);
+        $unidades = $this->Empleados->Programa->find('list',['keyField' => 'unidad_id','valueField' => 'des_unidad']);
+        $carreras = $this->Empleados->Carreras->find('list',['keyField' => 'carrera_id','valueField' => 'des_carrera']);
+        $statusprofecional = $this->Empleados->Statusprofecional->find('list',['keyField' => 'statusprofecional_id','valueField' => 'des_statusprofecional']);
+        $contrataciones = $this->Empleados->Contrataciones->find('list',['keyField' => 'contratacion_id','valueField' => 'des_contratacion']);
+        $privilegiosinternet = $this->Empleados->Privilegiosinternet->find('list');
+        $categoriatelefono = $this->Empleados->Categoriatelefono->find('list',['keyField' => 'categoriatelefono_id','valueField' => 'des_categoriatelefono']);
+
+
+        $movgafetes = $this->Movgafetes->Movgafetes->find('list', ['limit' => 200]);
+        $users = $this->Movgafetes->Users->find('list', ['limit' => 200]);
+        $empleados = $this->Movgafetes->Empleados->find('list', ['keyField' => 'empleado_id','valueField' => 'nue']);
+        $this->set(compact('movgafete', 'movgafetes', 'users', 'empleados','empleado','categorias', 'dependencias', 'areas', 'departamentos', 'unidades', 'carreras', 'statusprofecional', 'contrataciones', 'status', 'privilegiosinternet', 'categoriatelefono'));
         $this->set('_serialize', ['movgafete']);
     }
 

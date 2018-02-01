@@ -23,22 +23,22 @@
 <form method="post" accept-charset="utf-8" class="form-horizontal" action="/SisRed/empleados/pdf.pdf" target="_blank">
     <legend><h1><?= __('PDF') ?></h1></legend>
     <div class="form-group">
-      <label for="empleado_id" class="col-lg-2 control-label">Conmutador ID</label>
+      <label for="nue" class="col-lg-2 control-label">Nue</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="empleado_id" id="empleado_id">
+        <input type="text" class="form-control" name="nue" id="nue">
       </div>
     </div>
 
 
-<div class="form-group">
+<!-- <div class="form-group">
       <label for="dependencias_dependencia_id" class="col-lg-2 control-label">Conmutador ID</label>
       <div class="col-lg-10">
         <input type="text" class="form-control" name="dependencias_dependencia_id" id="dependencias_dependencia_id">
       </div>
-    </div>
+    </div> -->
 
 
-    <div class="form-group">
+    <!-- <div class="form-group">
               <label for="nue" class="col-lg-2 control-label">Numero de Serie</label>
               <div class="col-lg-10">
                 <?php echo $this->Form->control('nue',['label'=>false,'class'=>'form-control']);?>
@@ -91,7 +91,7 @@
               <div class="col-lg-10">
                 <input type="text" class="form-control" name="empleados_empleado_id" id="empleados_empleado_id">
               </div>
-            </div>
+            </div> -->
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="submit" class="btn btn-default">PDF</button>

@@ -75,7 +75,7 @@ class AppController extends Controller
         $this->loadComponent('Search.Prg', [
         // This is default config. You can modify "actions" as needed to make
         // the PRG component work only for specified methods.
-        'actions' => ['index', 'lookup']
+        'actions' => ['index', 'lookup','indexempleados']
     ]);
     }
     public function isAuthorized($user)

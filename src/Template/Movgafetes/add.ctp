@@ -33,19 +33,19 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="fecha_movimiento" class="col-lg-2 control-label">Fecha</label>
-      <div class="col-lg-10">
-        <?php echo $this->Form->control('fecha_movimiento',['label'=>false,'class'=>'form-control']);?>
-      </div>
-    </div>
+              <label for="fecha_movimiento" class="col-lg-2 control-label">Fecha Movimiento</label>
+              <div class="col-lg-10">
+                <input type="date" class="form-control" name="fecha_movimiento" id="fecha_movimiento" required="required">
+              </div>
+            </div>
     <div class="form-group">
       <label for="users_user_id" class="col-lg-2 control-label">Usuario</label>
       <div class="col-lg-10">
-        <?php echo $this->Form->control('users_user_id', ['label'=>false,'options' => $users,'class'=>'form-control']);?>
+        <?php echo $this->Form->control('users_user_id', ['label'=>false,'options' => $users,'class'=>'form-control','value'=>$Auth->user('users_user_id')]);?>
       </div>
     </div>
     <div class="form-group">
-      <label for="empleados_empleado_id" class="col-lg-2 control-label">Fecha</label>
+      <label for="empleados_empleado_id" class="col-lg-2 control-label">Empleado</label>
       <div class="col-lg-10">
         <?php echo $this->Form->control('empleados_empleado_id', ['label'=>false,'options' => $empleados,'class'=>'form-control']);?>
       </div>
@@ -60,3 +60,17 @@
   </fieldset>
 <?= $this->Form->end() ?>
 </div>
+
+      <script type="text/javascript">
+        $(document).ready( function() {
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if (month < 10) 
+        month = "0" + month;
+    if (day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+    $('#fecha_movimiento').val(today);
+});
+      </script>

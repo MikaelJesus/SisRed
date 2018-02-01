@@ -9,14 +9,8 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">Menu</li>
-      <li><?= $this->Form->postLink(
-        __('Eliminar Empleado'),
-        ['action' => 'delete', $empleado->empleado_id],
-        ['confirm' => __('¿Esta seguro que desea eliminar este registro?')]
-      )
-      ?></li>
-      <li><?= $this->Html->link(__('Nuevo Empleado'), ['action' => 'add']) ?></li>
-      <li><?= $this->Html->link(__('Lista de Empleados'), ['action' => 'index']) ?></li>
+      <!-- <li><?= $this->Html->link(__('Nuevo Empleado'), ['action' => 'add']) ?></li> -->
+      <li><?= $this->Html->link(__('Lista de Empleados'), ['action' => 'indexempleados']) ?></li>
       <li><a href="/SisRed/main/logout">Salir</a></li>
     </ul>
   </div>
@@ -29,7 +23,7 @@
                 </div>
             </div>
           </div> -->
-          <?= $this->Form->create($empleado,['type'=>'file','class'=>'form-horizontal']) ?>
+          <?= $this->Form->create($empleado,['type'=>'file','class'=>'form-horizontal'],$movgafete) ?>
           <fieldset>
             <legend><h1><?= __('Agregar Empleado') ?></h1></legend>
             <div class="form-group">
@@ -116,9 +110,9 @@
             </div>
 
             <div class="form-group">
-              <label for="fecha_gafete" class="col-lg-2 control-label">Fecha Gafete(hidden/server time)</label>
+              <label for="fecha_gafete" class="col-lg-2 control-label">Fecha Gafete</label>
               <div class="col-lg-10">
-                <input type="date" class="form-control" name="fecha_gafete" id="fecha_gafete" required="required" placeholder="Descripcion">
+                <input type="date" class="form-control" name="fecha_gafete" id="fecha_gafete" required="required">
               </div>
             </div>
 
@@ -126,8 +120,8 @@
               <label for="sexo" class="col-lg-2 control-label">Sexo</label>
               <div class="col-lg-10">
                 <select class="form-control" name="sexo" id="sexo">
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
                 </select>
               </div>
             </div>
@@ -188,7 +182,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="privilegiosinternet_privilegio_id" class="col-lg-2 control-label">Privilegios de Internet</label>
               <div class="col-lg-10">
                 <?php echo $this->Form->control('privilegiosinternet_privilegio_id', ['label'=>false,'options' => $privilegiosinternet,'class'=>'form-control','empty'=>true]);?>
@@ -200,7 +194,7 @@
               <div class="col-lg-10">
                 <?php echo $this->Form->control('categoriatelefono_categoriatelefono_id', ['label'=>false,'options' => $categoriatelefono,'class'=>'form-control','empty'=>true]);?>
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label for="observaciones" class="col-lg-2 control-label">Observaciones</label>
@@ -260,11 +254,69 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-default">Guardar</button>
+
+
+
+            <!-- <?= $this->Form->create($movgafete,['class'=>'form-horizontal']) ?> -->
+            <fieldset hidden="hidden">
+              <div class="form-group">
+                <label for="tipo_movimiento" class="col-lg-2 control-label">Tipo de Movimiento</label>
+                <div class="col-lg-10">
+                  <?php echo $this->Form->control('tipo_movimiento',['label'=>false,'class'=>'form-control','value'=>1]);?>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+              <label for="fecha_movimiento" class="col-lg-2 control-label">Fecha Movimiento</label>
+              <div class="col-lg-10">
+                <input type="date" class="form-control" name="fecha_movimiento" id="fecha_movimiento" required="required">
               </div>
             </div>
-          </fieldset>
-          <?= $this->Form->end() ?>
-        </div>
+
+
+
+              <div class="form-group">
+                <label for="users_user_id" class="col-lg-2 control-label">Usuario</label>
+                <div class="col-lg-10">
+                  <?php echo $this->Form->control('users_user_id', ['label'=>false,'options' => $users,'class'=>'form-control','value'=>$Auth->user('users_user_id')]);?>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="empleados_empleado_id" class="col-lg-2 control-label">Empleado</label>
+                <div class="col-lg-10">
+                  <?php echo $this->Form->control('empleados_empleado_id', ['label'=>false,'options' => $empleados,'class'=>'form-control']);?>
+                </div>
+              </div>
+
+            </fieldset>
+            <!-- <?= $this->Form->end() ?> -->
+          </div>
+
+
+
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-default">Agregar</button>
+            </div>
+          </div>
+        </fieldset>
+        <?= $this->Form->end() ?>
+      </div>
+
+
+
+      <script type="text/javascript">
+        $(document).ready( function() {
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if (month < 10) 
+        month = "0" + month;
+    if (day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+    $('#fecha_gafete').val(today);
+    $('#fecha_movimiento').val(today);
+});
+      </script>
